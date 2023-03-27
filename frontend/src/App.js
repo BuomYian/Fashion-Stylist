@@ -7,7 +7,7 @@ function App() {
     <BrowserRouter>
       <div>
         <header>
-          <Link to="/">Stylish</Link>
+          <Link to="/">Stylish Home</Link>
         </header>
         <main>
           <Routes>
