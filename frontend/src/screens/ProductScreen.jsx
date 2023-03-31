@@ -11,7 +11,7 @@ import Button from "react-bootstrap/esm/Button";
 import { Helmet } from "react-helmet-async";
 import LoadingBox from "../Components/LoadingBox";
 import MessageBox from "../Components/MessageBox";
-import { getError } from "../Components/utils";
+import { getError } from "../utils";
 
 const reducer = (state, action) => {
   switch (action.type) {
