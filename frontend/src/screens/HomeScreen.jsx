@@ -1,16 +1,12 @@
 import { useEffect, useReducer } from "react";
-
 import axios from "axios";
-
 import logger from "use-reducer-logger";
-
 import Row from "react-bootstrap/Row";
-
 import Col from "react-bootstrap/Col";
-
+import LoadingBox from "../Components/LoadingBox";
 import Product from "../Components/Product";
-
 import { Helmet } from "react-helmet-async";
+import MessageBox from "../Components/MessageBox";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -51,9 +47,9 @@ function HomeScreen() {
       <h1>Featured Products</h1>
       <div className="products">
         {loading ? (
-          <div>Loading</div>
+          <LoadingBox />
         ) : error ? (
-          <div>{error}</div>
+          <MessageBox variant="danger">{error}</MessageBox>
         ) : (
           <Row>
             {products.map((product) => (
