@@ -10,6 +10,8 @@ import Col from "react-bootstrap/Col";
 
 import Product from "../Components/Product";
 
+import { Helmet } from "react-helmet-async";
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUST":
@@ -29,7 +31,6 @@ function HomeScreen() {
     loading: true,
     error: "",
   });
-  // const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: "FETCH_REQUEST" });
@@ -39,13 +40,14 @@ function HomeScreen() {
       } catch (err) {
         dispatch({ type: "FETCH_FAIL", payload: err.message });
       }
-
-      // setProducts(result.data);
     };
     fetchData();
   }, []);
   return (
     <div>
+      <Helmet>
+        <title>Stylist Home</title>
+      </Helmet>
       <h1>Featured Products</h1>
       <div className="products">
         {loading ? (
