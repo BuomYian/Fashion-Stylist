@@ -16,7 +16,7 @@ import { Store } from "../Store";
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "FETCH_REQUST":
+    case "FETCH_REQUEST":
       return { ...state, loading: true };
     case "FETCH_SUCCESS":
       return { ...state, product: action.payload, loading: false };

@@ -118,15 +118,25 @@
     1. create backend api for order/:id
     2. fetch order api in frondend
     3. show order information in 2 columns
-30. Display Order History
+30. Pay Order By PayPal
+    1. generate paypal client id
+    2. create api to return client id
+    3. install react-paypal-js
+    4. use PayPalScriptReducer in index.js
+    5. use usePayPalScriptReducer in Order Screen
+    6. implement loadPayPalScript function
+    7. render paypal button
+    8. implement onApprove payment function
+    9. create pay order api in backend
+31. Display Order History
     1. create order screen
     2. create order history api
     3. use api in the frontend
-31. Create Profile Screen
+32. Create Profile Screen
     1. get user info from context
     2. show user information
     3. create user update api
     4. update user info
-32. Add Sidebar and Search Box
+33. Add Sidebar and Search Box
     1. add sidebar
     2. add search box

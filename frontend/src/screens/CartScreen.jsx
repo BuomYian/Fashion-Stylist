@@ -40,9 +40,9 @@ export default function CartScreen() {
   return (
     <div>
       <Helmet>
-        <title>Shoping Cart</title>
+        <title>Shopping Cart</title>
       </Helmet>
-      <h1>Shoping Cart</h1>
+      <h1>Shopping Cart</h1>
       <Row>
         <Col md={8}>
           {cartItems.length === 0 ? (
