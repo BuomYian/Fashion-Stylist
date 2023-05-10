@@ -69,6 +69,19 @@ const data = {
       numReviews: 7,
       description: "High quality pant",
     },
+    {
+      //_id: "4",
+      name: "Denim Jean",
+      slug: "denim-jean",
+      category: "Pants",
+      image: "/images/download (1).jpg",
+      brand: "Denim",
+      price: 75,
+      countInStock: 15,
+      rating: 4.5,
+      numReviews: 7,
+      description: "High quality denim jean",
+    },
   ],
 };
 

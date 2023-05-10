@@ -85,7 +85,7 @@ export default function UserEditScreen() {
         type: "UPDATE_SUCCESS",
       });
       toast.success("User updated successfully");
-      navigate("/admin/users");
+      navigate("/admin/userlist");
     } catch (error) {
       toast.error(getError(error));
       dispatch({ type: "UPDATE_FAIL" });
