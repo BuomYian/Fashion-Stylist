@@ -54,7 +54,7 @@ function App() {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const { data } = await axios.get("/api/products/categories");
+      const { data } = await axios.get(`/api/products/categories`);
       setCategories(data);
       try {
       } catch (err) {
@@ -230,7 +230,7 @@ function App() {
                 }
               />
               <Route
-                path="/admin/orders"
+                path="/admin/orderlist"
                 element={
                   <AdminRoute>
                     <OrderListScreen />
@@ -238,7 +238,7 @@ function App() {
                 }
               />
               <Route
-                path="/admin/users"
+                path="/admin/userlist"
                 element={
                   <AdminRoute>
                     <UserListScreen />
@@ -246,7 +246,7 @@ function App() {
                 }
               />
               <Route
-                path="/admin/products"
+                path="/admin/productlist"
                 element={
                   <AdminRoute>
                     <ProductListScreen />
