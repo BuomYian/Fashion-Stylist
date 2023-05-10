@@ -68,7 +68,7 @@ export default function OrderHistoryScreen() {
               <th>TOTAL</th>
               <th>PAID</th>
               <th>DELIVERED</th>
-              <th>ACTIVE</th>
+              <th>ACTIONS</th>
             </tr>
           </thead>
           <tbody>
@@ -84,7 +84,13 @@ export default function OrderHistoryScreen() {
                     : "No"}
                 </td>
                 <td>
-                  <Button type="button" variant="light">
+                  <Button
+                    type="button"
+                    variant="light"
+                    onClick={() => {
+                      navigate(`/order/${order._id}`);
+                    }}
+                  >
                     Details
                   </Button>
                 </td>

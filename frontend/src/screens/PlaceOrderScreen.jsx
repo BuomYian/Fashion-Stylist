@@ -102,6 +102,7 @@ export default function PlaceOrderScreen() {
               <Link to="/shipping">Edit</Link>
             </Card.Body>
           </Card>
+
           <Card className="mb-3">
             <Card.Title>Payment</Card.Title>
             <Card.Text>
@@ -109,6 +110,7 @@ export default function PlaceOrderScreen() {
             </Card.Text>
             <Link to="/payment">Edit</Link>
           </Card>
+
           <Card className="mb-3">
             <Card.Body>
               <Card.Title>Items</Card.Title>
