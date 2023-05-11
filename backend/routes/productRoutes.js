@@ -24,7 +24,7 @@ productRouter.post(
       brand: "sample brand",
       countInStock: 0,
       rating: 0,
-      numReviews: 0,
+      numReviews: 1,
       description: "sample description",
     });
     const product = await newProduct.save();
