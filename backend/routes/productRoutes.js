@@ -16,16 +16,16 @@ productRouter.post(
   isAdmin,
   expressAsyncHandler(async (req, res) => {
     const newProduct = new Product({
-      name: "sample name " + Date.now(),
-      slug: "sample-name-" + Date.now(),
-      image: "/images/photo-1588099768531-a72d4a198538.avif",
-      price: 0,
-      category: "sample category",
-      brand: "sample brand",
-      countInStock: 0,
-      rating: 0,
-      numReviews: 1,
-      description: "sample description",
+      name: "Denim jean " + Date.now(),
+      slug: "denim-jean" + Date.now(),
+      image: "/images/download (1).jpg",
+      price: 50,
+      category: "Pants",
+      brand: "Denim",
+      countInStock: 3,
+      rating: 4.5,
+      numReviews: 23,
+      description: "Best quality denim jean. Available in all sizes",
     });
     const product = await newProduct.save();
     res.send({ message: "Product Created", product });

@@ -270,7 +270,7 @@ function App() {
                 }
               />
               <Route
-                path="/seller/productList"
+                path="/seller/productlist"
                 element={
                   <SellerRoute>
                     <ProductListScreen />
@@ -278,7 +278,7 @@ function App() {
                 }
               />
               <Route
-                path="/seller/orderList"
+                path="/seller/orderlist"
                 element={
                   <SellerRoute>
                     <OrderListScreen />
