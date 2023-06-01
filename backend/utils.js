@@ -1,6 +1,8 @@
+// Importing required modules and libraries
 import jwt from "jsonwebtoken";
 import mg from "mailgun-js";
 
+// Function to retrieve the base URL based on the environment
 export const baseUrl = () =>
   process.env.BASE_URL
     ? process.env.BASE_URL
@@ -8,6 +10,7 @@ export const baseUrl = () =>
     ? "http://localhost:3000"
     : "https://hbhstylist.com";
 
+// Function to generate a JSON Web Token (JWT) for a user
 export const generateToken = (user) => {
   return jwt.sign(
     {
@@ -23,6 +26,7 @@ export const generateToken = (user) => {
   );
 };
 
+// Middleware to check if a user is authenticated
 export const isAuth = (req, res, next) => {
   const authorization = req.headers.authorization;
   if (authorization) {
@@ -40,6 +44,7 @@ export const isAuth = (req, res, next) => {
   }
 };
 
+// Middleware to check if a user is an admin
 export const isAdmin = (req, res, next) => {
   if (req.user && req.user.isAdmin) {
     next();
@@ -48,12 +53,14 @@ export const isAdmin = (req, res, next) => {
   }
 };
 
+// Function to create a Mailgun instance for sending emails
 export const mailgun = () =>
   mg({
     apiKey: process.env.MAILGUN_API_KEY,
     domain: process.env.MAILGUN_DOMIAN,
   });
 
+// Email template for sending a confirmation email after a successful order
 export const payOrderEmailTemplate = (order) => {
   return `<h1>Thanks for shopping with us</h1>
     <p>

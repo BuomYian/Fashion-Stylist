@@ -1,20 +1,25 @@
+// Importing required modules and libraries
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import Product from "../models/productModel.js";
 import { isAuth, isAdmin } from "../utils.js";
 
+// Creating a router for handling product-related routes
 const productRouter = express.Router();
 
+// Route for getting all products
 productRouter.get("/", async (req, res) => {
   const products = await Product.find();
   res.send(products);
 });
 
+// Route for creating a new product
 productRouter.post(
   "/",
   isAuth,
   isAdmin,
   expressAsyncHandler(async (req, res) => {
+    // Creating a new product with provided information
     const newProduct = new Product({
       name: "Denim jean " + Date.now(),
       slug: "denim-jean" + Date.now(),
@@ -27,17 +32,21 @@ productRouter.post(
       numReviews: 23,
       description: "Best quality denim jean. Available in all sizes",
     });
+    // Saving the new product to the database
     const product = await newProduct.save();
     res.send({ message: "Product Created", product });
   })
 );
 
+// Route for updating a product
 productRouter.put(
   "/:id",
   isAuth,
   isAdmin,
   expressAsyncHandler(async (req, res) => {
+    // Finding the product by ID
     const productId = req.params.id;
+    // Updating the product information with the provided data
     const product = await Product.findById(productId);
     if (product) {
       product.name = req.body.name;
@@ -49,6 +58,7 @@ productRouter.put(
       product.brand = req.body.brand;
       product.countInStock = req.body.countInStock;
       product.description = req.body.description;
+      // Saving the updated product to the database
       await product.save();
       res.send({ message: "Product Updated" });
     } else {
@@ -57,6 +67,7 @@ productRouter.put(
   })
 );
 
+// Route for deleting a product
 productRouter.delete(
   "/:id",
   isAuth,
@@ -64,6 +75,7 @@ productRouter.delete(
   expressAsyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (product) {
+      // Removing the product from the database
       await product.remove();
       res.send({ message: "Product Deleted" });
     } else {
@@ -72,6 +84,7 @@ productRouter.delete(
   })
 );
 
+// Route for submitting a review for a product
 productRouter.post(
   "/:id/reviews",
   isAuth,
@@ -79,6 +92,7 @@ productRouter.post(
     const productId = req.params.id;
     const product = await Product.findById(productId);
     if (product) {
+      // Checking if the user has already submitted a review for the product
       if (product.reviews.find((x) => x.name === req.user.name)) {
         return res
           .status(400)
@@ -90,11 +104,13 @@ productRouter.post(
         rating: Number(req.body.rating),
         comment: req.body.comment,
       };
+      // Adding the new review to the product's reviews list
       product.reviews.push(review);
       product.numReviews = product.reviews.length;
       product.rating =
         product.reviews.reduce((a, c) => c.rating + a, 0) /
         product.reviews.length;
+      // Saving the updated product to the database
       const updatedProduct = await product.save();
       res.status(201).send({
         message: "Review Created",
@@ -108,8 +124,10 @@ productRouter.post(
   })
 );
 
+// Constants for pagination
 const PAGE_SIZE = 3;
 
+// Route for getting products for the admin
 productRouter.get(
   "/admin",
   isAuth,
@@ -119,6 +137,7 @@ productRouter.get(
     const page = query.page || 1;
     const pageSize = query.pageSize || PAGE_SIZE;
 
+    // Fetching products with pagination and counting the total number of products
     const products = await Product.find()
       .skip(pageSize * (page - 1))
       .limit(pageSize);
@@ -132,6 +151,7 @@ productRouter.get(
   })
 );
 
+// Route for searching products with filters
 productRouter.get(
   "/search",
   expressAsyncHandler(async (req, res) => {
@@ -144,6 +164,7 @@ productRouter.get(
     const order = query.order || "";
     const searchQuery = query.query || "";
 
+    // Creating filters based on query parameters
     const queryFilter =
       searchQuery && searchQuery !== "all"
         ? {
@@ -173,6 +194,7 @@ productRouter.get(
           }
         : {};
 
+    // Creating sorting order based on query parameter
     const sortOrder =
       order === "featured"
         ? { featured: -1 }
@@ -186,6 +208,7 @@ productRouter.get(
         ? { createdAt: -1 }
         : { _id: -1 };
 
+    // Fetching products based on filters and pagination
     const products = await Product.find({
       ...queryFilter,
       ...categoryFilter,
@@ -196,6 +219,7 @@ productRouter.get(
       .skip(pageSize * (page - 1))
       .limit(pageSize);
 
+    // Counting the total number of products based on filters
     const countProducts = await Product.countDocuments({
       ...queryFilter,
       ...categoryFilter,
@@ -212,15 +236,19 @@ productRouter.get(
   })
 );
 
+// Route for getting distinct categories of products
 productRouter.get(
   "/categories",
   expressAsyncHandler(async (req, res) => {
+    // Fetching distinct categories from the products collection
     const categories = await Product.find().distinct("category");
     res.send(categories);
   })
 );
 
+// Route for getting a product by its slug
 productRouter.get("/slug/:slug", async (req, res) => {
+  // Finding a product based on the provided slug
   const product = await Product.findOne({ slug: req.params.slug });
   if (product) {
     res.send(product);
@@ -229,7 +257,9 @@ productRouter.get("/slug/:slug", async (req, res) => {
   }
 });
 
+// Route for getting a product by its ID
 productRouter.get("/:id", async (req, res) => {
+  // Finding a product based on the provided ID
   const product = await Product.findById(req.params.id);
   if (product) {
     res.send(product);
