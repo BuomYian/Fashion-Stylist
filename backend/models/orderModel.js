@@ -45,7 +45,7 @@ const orderSchema = new mongoose.Schema(
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     isPaid: { type: Boolean, default: false },
     paidAt: { type: Date },
-    isDeliveredAt: { type: Date },
+    isDeliveredAt: { type: Boolean },
     deliveredAt: { type: Date },
   },
   {
