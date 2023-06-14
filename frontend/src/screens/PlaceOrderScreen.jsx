@@ -94,7 +94,13 @@ export default function PlaceOrderScreen() {
             <Card.Body>
               <Card.Title>Shipping</Card.Title>
               <Card.Text>
-                <strong>Name:</strong> {cart.shippingAddress.fullname} <br />
+                <strong>Name:</strong>{" "}
+                {cart.shippingAddress.first_name +
+                  " " +
+                  cart.shippingAddress.last_name}{" "}
+                <br />
+                <strong>Email:</strong> {cart.shippingAddress.email}
+                <br />
                 <strong>Address:</strong> {cart.shippingAddress.address},{" "}
                 {cart.shippingAddress.city}, {cart.shippingAddress.postalCode},{" "}
                 {cart.shippingAddress.country}

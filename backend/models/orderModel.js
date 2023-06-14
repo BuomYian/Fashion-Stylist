@@ -17,7 +17,11 @@ const orderSchema = new mongoose.Schema(
       },
     ],
     shippingAddress: {
-      fullname: { type: String, required: true },
+      first_name: { type: String, required: true },
+      last_name: { type: String, required: true },
+      email: { type: String, required: true },
+      currency: { type: String, required: true },
+      amount: { type: Number, required: true },
       address: { type: String, required: true },
       city: { type: String, required: true },
       postalCode: { type: String, required: true },
@@ -31,6 +35,13 @@ const orderSchema = new mongoose.Schema(
         googleAddressId: String,
       },
     },
+    // chapaPayment: {
+    //   first_name: { type: String, required: true },
+    //   last_name: { type: String, required: true },
+    //   email: { type: String, required: true },
+    //   currency: { type: String, required: true },
+    //   amount: { type: Number, required: true },
+    // },
     paymentMethod: { type: String, required: true },
     paymentResult: {
       id: String,
@@ -45,7 +56,7 @@ const orderSchema = new mongoose.Schema(
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     isPaid: { type: Boolean, default: false },
     paidAt: { type: Date },
-    isDeliveredAt: { type: Boolean },
+    isDelivered: { type: Boolean },
     deliveredAt: { type: Date },
   },
   {

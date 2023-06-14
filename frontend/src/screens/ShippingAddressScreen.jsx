@@ -14,7 +14,11 @@ export default function ShippingAddressScreen() {
     userInfo,
     cart: { shippingAddress },
   } = state;
-  const [fullname, setFullName] = useState(shippingAddress.fullname || "");
+  const [first_name, setFirstName] = useState(shippingAddress.first_name || "");
+  const [last_name, setLastName] = useState(shippingAddress.last_name || "");
+  const [email, setEmail] = useState(shippingAddress.email || "");
+  const [currency, setCurrency] = useState(shippingAddress.currency || "");
+  const [amount, setAmount] = useState(shippingAddress.amount || "");
   const [address, setAddress] = useState(shippingAddress.address || "");
   const [city, setCity] = useState(shippingAddress.city || "");
   const [postalCode, setPostalCode] = useState(
@@ -33,7 +37,11 @@ export default function ShippingAddressScreen() {
     ctxDispatch({
       type: "SAVE_SHIPPING_ADDRESS",
       payload: {
-        fullname,
+        first_name,
+        last_name,
+        email,
+        currency,
+        amount,
         address,
         city,
         postalCode,
@@ -43,7 +51,11 @@ export default function ShippingAddressScreen() {
     localStorage.setItem(
       "shippingAddress",
       JSON.stringify({
-        fullname,
+        first_name,
+        last_name,
+        email,
+        currency,
+        amount,
         address,
         city,
         postalCode,
@@ -66,11 +78,43 @@ export default function ShippingAddressScreen() {
       <div className="container small-container">
         <h1>Shipping Address</h1>
         <Form onSubmit={submitHandler}>
-          <Form.Group className="mb-3" controlId="fullname">
-            <Form.Label>Full Name</Form.Label>
+          <Form.Group className="mb-3" controlId="first_name">
+            <Form.Label>First Name</Form.Label>
             <Form.Control
-              value={fullname}
-              onChange={(e) => setFullName(e.target.value)}
+              value={first_name}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="last_name">
+            <Form.Label>Last Name</Form.Label>
+            <Form.Control
+              value={last_name}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="email">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="currency">
+            <Form.Label>Currency</Form.Label>
+            <Form.Control
+              value={currency}
+              onChange={(e) => setCurrency(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="amount">
+            <Form.Label>Amount</Form.Label>
+            <Form.Control
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
               required
             />
           </Form.Group>

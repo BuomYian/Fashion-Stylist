@@ -36,6 +36,7 @@ import UserEditScreen from "./screens/UserEditScreen";
 import ForgetPasswordScreen from "./screens/ForgetPasswordScreen";
 import ResetPasswordScreen from "./screens/ResetPasswordScreen";
 import SellerRoute from "./Components/SellerRoute";
+import VRScreen from "./screens/VRScreen";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -148,6 +149,9 @@ function App() {
                       <LinkContainer to="/admin/userlist">
                         <NavDropdown.Item>Users</NavDropdown.Item>
                       </LinkContainer>
+                      <LinkContainer to="/admin/support">
+                        <NavDropdown.Item>Support</NavDropdown.Item>
+                      </LinkContainer>
                     </NavDropdown>
                   )}
                 </Nav>
@@ -204,6 +208,7 @@ function App() {
               />
               <Route path="/payment" element={<PaymentMethodScreen />} />
               <Route path="/placeorder" element={<PlaceOrderScreen />} />
+              <Route path="/vr-screen" element={<VRScreen />} />
               <Route
                 path="/order/:id"
                 element={
@@ -229,6 +234,14 @@ function App() {
                   </AdminRoute>
                 }
               />
+              {/* <Route
+                path="/admin/support"
+                element={
+                  <AdminRoute>
+                    <WrappedSupportScreen />
+                  </AdminRoute>
+                }
+              /> */}
               <Route
                 path="/admin/orderlist"
                 element={

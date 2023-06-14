@@ -202,6 +202,13 @@ function ProductScreen() {
                     </div>
                   </ListGroup.Item>
                 )}
+                <ListGroup.Item>
+                  <div className="d-grid">
+                    <Button as={Link} to="/vr-screen" variant="primary">
+                      Show virtually
+                    </Button>
+                  </div>
+                </ListGroup.Item>
               </ListGroup>
             </Card.Body>
           </Card>

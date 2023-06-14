@@ -79,8 +79,10 @@ export default function OrderHistoryScreen() {
                 <td>{order.totalPrice.toFixed(2)}</td>
                 <td>{order.isPaid ? order.paidAt.substring(0, 10) : "No"}</td>
                 <td>
-                  {order.isDeliveredAt
-                    ? order.isDeliveredAt.substring(0, 10)
+                  {order.isDelivered
+                    ? typeof order.isDelivered === "string"
+                      ? order.isDelivered.substring(0, 10)
+                      : "Yes"
                     : "No"}
                 </td>
                 <td>

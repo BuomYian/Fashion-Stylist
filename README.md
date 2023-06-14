@@ -148,3 +148,7 @@
     1. define protected route component
     2. define admin route component
     3. add menu for admin in header
+36. Implement Live chat with customers
+    1. use socket io to create backend
+    2. create chat box component
+    3. create support screen

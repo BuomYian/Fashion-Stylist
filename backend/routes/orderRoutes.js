@@ -109,7 +109,7 @@ orderRouter.put(
   expressAsyncHandler(async (req, res) => {
     const order = await Order.findById(req.params.id);
     if (order) {
-      order.isDeliveredAt = true;
+      order.isDelivered = true;
       order.deliveredAt = Date.now();
       await order.save();
       res.send({ message: "Order Delivered" });

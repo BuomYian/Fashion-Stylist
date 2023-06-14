@@ -125,7 +125,7 @@ productRouter.post(
 );
 
 // Constants for pagination
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 10;
 
 // Route for getting products for the admin
 productRouter.get(

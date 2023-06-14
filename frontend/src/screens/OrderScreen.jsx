@@ -77,6 +77,31 @@ export default function OrderScreen() {
 
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 
+  // Handling paywithchapa
+  async function chapaPaymentHandler() {
+    // console.log(localStorage.getItem("shippingAddress"));
+    const options = {
+      headers: {
+        "Access-Control-Allow-Origin": "http://localhost:4000",
+      },
+    };
+    axios
+      .post(
+        "/api/keys/paywithchapa",
+        {
+          form_data: localStorage.getItem("shippingAddress"),
+        },
+        options
+      )
+      .then((res) => {
+        // console.log("response", res.data.data.checkout_url);
+        window.location.href = res.data.data.checkout_url;
+      })
+      .catch((err) => {
+        console.log("error", err);
+      });
+  }
+
   function createOrder(data, actions) {
     return actions.order
       .create({
@@ -203,7 +228,11 @@ export default function OrderScreen() {
             <Card.Body>
               <Card.Title>Shipping</Card.Title>
               <Card.Text>
-                <strong>Name:</strong> {order.shippingAddress.fullname} <br />
+                <strong>Name:</strong>{" "}
+                {order.shippingAddress.first_name +
+                  " " +
+                  order.shippingAddress.last_name}{" "}
+                <br />
                 <strong>Address: </strong> {order.shippingAddress.address},
                 {order.shippingAddress.city}, {order.shippingAddress.postalCode}
                 ,{order.shippingAddress.country}
@@ -313,6 +342,10 @@ export default function OrderScreen() {
                           onApprove={onApprove}
                           onError={onError}
                         ></PayPalButtons>
+                        {/* Render Chapa payment button */}
+                        <Button onClick={chapaPaymentHandler}>
+                          Pay with Chapa
+                        </Button>
                       </div>
                     )}
                     {loadingPay && <LoadingBox></LoadingBox>}
