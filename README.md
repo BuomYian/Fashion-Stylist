@@ -152,3 +152,10 @@
     1. use socket io to create backend
     2. create chat box component
     3. create support screen
+37. Publish To Heroku
+    1. create and config node project
+    2. serve build folder in frondend folder
+    3. create heroku account
+    4. conect it to github
+    5. set database connection in heroku env variables
+    6. commit and push to github

@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// Mongoose schema for an order with various properties
 const orderSchema = new mongoose.Schema(
   {
     orderItems: [
@@ -35,13 +36,6 @@ const orderSchema = new mongoose.Schema(
         googleAddressId: String,
       },
     },
-    // chapaPayment: {
-    //   first_name: { type: String, required: true },
-    //   last_name: { type: String, required: true },
-    //   email: { type: String, required: true },
-    //   currency: { type: String, required: true },
-    //   amount: { type: Number, required: true },
-    // },
     paymentMethod: { type: String, required: true },
     paymentResult: {
       id: String,
@@ -59,6 +53,7 @@ const orderSchema = new mongoose.Schema(
     isDelivered: { type: Boolean },
     deliveredAt: { type: Date },
   },
+  // Also includes timestamps for creation and modification
   {
     timestamps: true,
   }
